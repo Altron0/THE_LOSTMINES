@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+ 
 public class IsMine : MonoBehaviour
 {
+    
     List<Material> getMaterial()
     {
         TryGetComponent(out MeshRenderer renderer);
