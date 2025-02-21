@@ -2,19 +2,42 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class IsMine : MonoBehaviour
 {
-    [SerializeField] GameObject mineUI;
+    [SerializeField] public GameObject mineUI;
+    public int id;
     [SerializeField] GameObject exit;
+    int hearth = 10;
+    [SerializeField] Image[] materialsImage = new Image[4];
 
     void OnCollisionEnter(Collision player)
     {
         exit.SetActive(true);  
+        exit.TryGetComponent(out Button button);
+        button.onClick.AddListener(hearthOri);
     }
 
+    void hearthOri()
+    {
+        hearth--;
+        if(hearth == 0)
+        {
+            foreach(Inventory slot in GetComponentsInChildren<Inventory>())
+            {
+                if(slot.id == 0)
+                {
+                    slot.TryGetComponent(out Image image);
+                    image = materialsImage[id];
+                    mineUI.SetActive(false);
+                    Destroy(gameObject);
+                }
+            }
+        }
+    }
     void OnCollisionExit(Collision player)
     {
         exit.SetActive(false);
@@ -41,8 +64,8 @@ public class IsMine : MonoBehaviour
 
     
 }
-struct Item
-{
-    public int id;
-    public int count;
-}
+// struct Item
+// {
+//     public int id;
+//     public int count;
+// }

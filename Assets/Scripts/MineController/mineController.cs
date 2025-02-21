@@ -13,12 +13,10 @@ public class mineController : MonoBehaviour, ISavable
     string file = "mineColor.json";
     List<int> mineColor = new List<int>();
 
-    int[] mineId = new int[12];
+    public int[] mineId = new int[12];
 
     static System.Random random = new System.Random();
     [SerializeField] Material[] materials =  new Material[4];
-
-    [SerializeField] Image[] materialsImage = new Image[4];
 
 
     void Start()
@@ -35,11 +33,11 @@ public class mineController : MonoBehaviour, ISavable
     void assigmentMine()
     {
         int counter = 0;
-        foreach (IsMine obj in GetComponentsInChildren<IsMine>())
+        foreach (IsMine mine in GetComponentsInChildren<IsMine>())
         {
             List<Material> mt = new List<Material>();
 
-            obj.TryGetComponent(out MeshRenderer renderer);
+            mine.TryGetComponent(out MeshRenderer renderer);
             int colorMineRandom = random.Next(0, 3);
 
             for(int i = 0;i < renderer.materials.Length;i++)
@@ -48,6 +46,7 @@ public class mineController : MonoBehaviour, ISavable
             }
             mineId[counter] = colorMineRandom;
             counter++;
+            mine.id = colorMineRandom;
             renderer.SetMaterials(mt);
             mineColor.Add(colorMineRandom);
         }

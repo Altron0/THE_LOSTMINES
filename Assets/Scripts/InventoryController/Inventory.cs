@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour
 {
-    [SerializeField] public Image slot;
+    [SerializeField] public Image image;
     [SerializeField] public int id;
     [SerializeField] public int count;
 }
