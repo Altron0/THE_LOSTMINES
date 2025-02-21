@@ -1,10 +1,25 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
- 
+using UnityEngine.UI;
+
 public class IsMine : MonoBehaviour
 {
-    
+    [SerializeField] GameObject mineUI;
+    [SerializeField] GameObject exit;
+
+    void OnCollisionEnter(Collision player)
+    {
+        exit.SetActive(true);  
+    }
+
+    void OnCollisionExit(Collision player)
+    {
+        exit.SetActive(false);
+    }
+
     List<Material> getMaterial()
     {
         TryGetComponent(out MeshRenderer renderer);
@@ -23,4 +38,11 @@ public class IsMine : MonoBehaviour
         TryGetComponent(out MeshRenderer renderer);
         renderer.SetMaterials(mt);
     }
+
+    
+}
+struct Item
+{
+    public int id;
+    public int count;
 }

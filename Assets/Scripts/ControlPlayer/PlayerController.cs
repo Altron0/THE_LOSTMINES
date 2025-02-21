@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     [SerializeField] JoystickController left;
     [SerializeField] JoystickController right;
@@ -17,9 +17,9 @@ public class Player : MonoBehaviour
     {
         gameObject.transform.TryGetComponent(out Transform cube);
 
-         Vector3 movePosition = ((cube.transform.right * left.LocalPositionEnd.x / 2000f)
+         Vector3 movePosition = ((cube.transform.right * left.LocalPositionEnd.x / 15000f)
          + (Vector3.zero)
-         + (cube.transform.forward * left.LocalPositionEnd.y) / 2000f);
+         + (cube.transform.forward * left.LocalPositionEnd.y) / 15000f);
 
         transform.position += movePosition * speedMove;
 

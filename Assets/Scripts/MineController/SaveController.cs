@@ -23,7 +23,10 @@ public class SaveController : MonoBehaviour
 
    void Load()
    {
-
+    foreach (ISavable savable in savableObjects)
+    {
+        savable.Load();
+    }
    }
 }
 
